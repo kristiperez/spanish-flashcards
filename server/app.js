@@ -1,15 +1,18 @@
 const express = require('express')
 const app = express()
+require('dotenv').config()
 const mongoose = require('mongoose')
 const cors = require('cors')
-PORT = 3002
 const Card = require('./schemas/card')
 const User = require('./schemas/user')
 var bcrypt = require('bcryptjs')
 const SALT_ROUNDS = 10
+var jwt = require('jsonwebtoken')
+const authenticate = require('./authMiddleware')
 
 app.use(cors())
 app.use(express.json())
+app.use('/api/*', authenticate)
 app.use(express.static('images'))
 
 //connecting to the MongoDB database
@@ -29,7 +32,7 @@ app.get('/all-cards', async (req,res) => {
     
 })
 
-app.get('/flashcards', async (req,res) => {
+app.get('/api/flashcards', async (req,res) => {
     try {
         const flashcard = await Card.aggregate( [ {$sample: { size: 1 } } ])
         res.json(flashcard)
@@ -71,6 +74,31 @@ app.post('/register',async (req,res) => {
     }
 })
 
-app.listen(PORT,() => {
+app.post('/login', async (req,res) => {
+    const username = req.body.username
+    const password = req.body.password
+
+    let persistedUser = await User.findOne({
+        username: username 
+    })
+
+    if(persistedUser != null) {
+        bcrypt.compare(password, persistedUser.password, (error,result) => {
+            if (result) { //credentials are valid
+                var token = jwt.sign({username: username}, process.env.JWT_SECRET_KEY);
+                res.json({token: token})
+
+            } else {
+                // credentials are not valid
+                res.status(401).json({error: 'Invalid credentials'})
+            }
+        })
+    } else {
+        res.status(401).json({error: 'Invalid credendtials'})
+    }
+
+})
+
+app.listen(process.env.PORT,() => {
     console.log('Server is running...')
 })
