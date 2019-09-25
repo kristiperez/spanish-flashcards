@@ -9,16 +9,18 @@ import Register from './components/Register'
 import Login from './components/Login';
 import FlashCards from './components/FlashCards'
 import RequireAuth from './components/RequireAuth'
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import authReducer from './store/reducers/authentication'
+import counterReducer from './store/reducers/counter'
 import { setAuthenticationHeader } from './utils/authenticate'
 
-// const rootReducer = combineReducers({
-//     authRed: AuthReducer
-// })
+const rootReducer = combineReducers({
+    authRed: authReducer,
+    ctrRed: counterReducer
+})
 
-const store = createStore(authReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(rootReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 // get the token
 let token = localStorage.getItem('jsonwebtoken')
@@ -33,7 +35,7 @@ ReactDOM.render(
             <Route path="/" exact component={App} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
-            <Route path="/flashcards" component={FlashCards} />
+            <Route path="/flashcards" component={RequireAuth(FlashCards)} />
         </Switch>
     </BaseLayout>
     </BrowserRouter>

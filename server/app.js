@@ -35,6 +35,10 @@ app.get('/all-cards', async (req,res) => {
 app.get('/api/flashcards', async (req,res) => {
     try {
         const flashcard = await Card.aggregate( [ {$sample: { size: 1 } } ])
+
+        flashcard[0].imageUrl = `http://localhost:3002/${flashcard[0].imageUrl}`
+
+        console.log(flashcard)
         res.json(flashcard)
     } catch(error) {
         res.json({error: 'Unable to get card'})

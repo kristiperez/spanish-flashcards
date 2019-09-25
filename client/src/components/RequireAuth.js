@@ -16,6 +16,7 @@ export default function(ComposedComponent) {
         render() {
 
             return (
+                // what is below really doing?
                 <ComposedComponent {...this.props} />
             )
         }
@@ -23,7 +24,7 @@ export default function(ComposedComponent) {
 
     const mapStatetoProps = (state) => {
         return {
-            isAuthenticated: state.isAuthenticated
+            isAuthenticated: state.authRed.isAuthenticated
         }
     }
 

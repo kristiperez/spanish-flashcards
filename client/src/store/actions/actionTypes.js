@@ -1,0 +1,2 @@
+export const INC_COUNTER = 'INC_COUNTER'
+export const INC_INC_COUNTER = 'INC_INC_COUNTER'

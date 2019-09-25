@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken')
 // do i need promise??
 function authenticate(req,res,next) {
     console.log('middleware called...')
-    next()
-    return
+    // next()
+    // return
     let headers = req.headers['authorization']
 
     if(headers) {
@@ -14,7 +14,7 @@ function authenticate(req,res,next) {
         if(decoded) {
             const username = decoded.username
             // check in the database if the user exists
-            const persistedUser = User.findOne({
+            const persistedUser = User.find({
                 username: username 
             })
             if(persistedUser) {
