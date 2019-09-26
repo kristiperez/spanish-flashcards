@@ -14,6 +14,7 @@ import { Provider } from 'react-redux'
 import authReducer from './store/reducers/authentication'
 import counterReducer from './store/reducers/counter'
 import { setAuthenticationHeader } from './utils/authenticate'
+import Score from './components/Score'
 
 const rootReducer = combineReducers({
     authRed: authReducer,
@@ -36,6 +37,7 @@ ReactDOM.render(
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/flashcards" component={RequireAuth(FlashCards)} />
+            <Route path="/score" component={Score} />
         </Switch>
     </BaseLayout>
     </BrowserRouter>

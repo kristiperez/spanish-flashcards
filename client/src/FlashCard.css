@@ -1,0 +1,26 @@
+img.card-img-top {
+    margin: 20px 0px;
+}
+.flashcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+div.card {
+    display: flex;
+    margin: 30px 0px;
+    box-shadow: 2px 4px 20px black;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.score {
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+    color: white;
+}

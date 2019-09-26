@@ -1,0 +1,21 @@
+span {
+    color: white;
+}
+
+p {
+    color: #9C13A7;
+}
+
+.container {
+    display:flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.finalScore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Bubblegum Sans'; 
+    font-size: 400%; 
+}

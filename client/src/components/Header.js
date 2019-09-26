@@ -1,7 +1,8 @@
 import React from 'react'
-import '../App.css'
+import '../header.css'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Navbar,Nav } from 'react-bootstrap';
 
 function Header(props) {
 
@@ -13,12 +14,17 @@ function Header(props) {
     }
 
     return (
-        <nav>
-            <NavLink to = "/">Home</NavLink>
-            <NavLink to = "/register">Register</NavLink>
-            <NavLink to = "/login">Login</NavLink> 
-            { props.authenticated ? <NavLink to = "/flashcards">Flashcards</NavLink> : null }
-        </nav>
+        <div className="navigation-custom">
+            <Navbar  variant="dark">
+            <Navbar.Brand href="/">Spanish for Kids</Navbar.Brand>
+            <Nav className="mr-auto">
+            <NavLink className="nav-link" to = "/">Home</NavLink>
+            <NavLink className="nav-link" to = "/register">Register</NavLink>
+            <NavLink className="nav-link" to = "/login">Login</NavLink> 
+            { props.authenticated ? <NavLink className="nav-link" to = "/flashcards">Flashcards</NavLink> : null }
+            </Nav>
+            </Navbar>
+        </div>
     )
 }
 

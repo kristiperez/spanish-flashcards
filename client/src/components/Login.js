@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { setAuthenticationHeader } from '../utils/authenticate'
 import { connect } from 'react-redux'
+import '../Login.css'
 
 
 function Login(props) {
@@ -34,10 +35,19 @@ function Login(props) {
     }
 
     return (
-        <div>
-            <input type="text" name="username" onChange={(e) => handleTextChange(e)} />
-            <input type="text" name="password" onChange={(e) => handleTextChange(e)} />
-            <button onClick={() => handleLogin()}>Login</button>
+        <div className="container">
+            <div className="registrationBox">
+            <h3>LOGIN</h3>
+            <div className="inputs">
+            <input type="text" name="username" placeholder="Enter username" onChange={(e) => handleTextChange(e)} />
+            </div>
+            <div className="inputs">
+            <input type="text" name="password" placeholder="Enter password"onChange={(e) => handleTextChange(e)} />
+            </div>
+            <button className="customButton" onClick={() => handleLogin()}>Login</button>
+            <span>Don't have an account?<a href="#"> Create one</a></span>
+            </div>
+            
         </div>
     )
 }
