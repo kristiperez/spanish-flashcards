@@ -9,6 +9,7 @@ var bcrypt = require('bcryptjs')
 const SALT_ROUNDS = 10
 var jwt = require('jsonwebtoken')
 const authenticate = require('./authMiddleware')
+const PORT = process.env.PORT || 8080
 
 app.use(cors())
 app.use(express.json())
@@ -103,6 +104,6 @@ app.post('/login', async (req,res) => {
 
 })
 
-app.listen(process.env.PORT,() => {
+app.listen(PORT,() => {
     console.log('Server is running...')
 })
