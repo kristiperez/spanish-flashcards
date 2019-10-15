@@ -6,6 +6,7 @@ import * as actionCreators from '../store/actions/actionCreators'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import '../FlashCard.css'
+import { INC_COUNTER } from '../store/actions/actionTypes';
 
 function FlashCard(props) {
     const [cards, setCards] = useState([])
@@ -77,6 +78,11 @@ function FlashCard(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+
+        // onIncrementCounter: () => dispatch({
+        //     type: actionTypes.INC_COUNTER
+        // }) *** this is what you'd do if you didn't use action creator ****
+
         onIncrementCounter: () => dispatch(actionCreators.incrementCorrectCounter()),
         onIncrementIncorrectCounter: () => dispatch(actionCreators.incrementIncorrectCounter())
     }
